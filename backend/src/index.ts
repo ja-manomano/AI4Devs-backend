@@ -4,6 +4,7 @@ import { PrismaClient } from '@prisma/client';
 import dotenv from 'dotenv';
 import candidateRoutes from './routes/candidateRoutes';
 import { uploadFile } from './application/services/fileUploadService';
+import positionRoutes from './routes/positionRoutes';
 import cors from 'cors';
 
 // Extender la interfaz Request para incluir prisma
@@ -41,6 +42,8 @@ app.use('/candidates', candidateRoutes);
 
 // Route for file uploads
 app.post('/upload', uploadFile);
+
+app.use('/position', positionRoutes);
 
 app.use((req, res, next) => {
   console.log(`${new Date().toISOString()} - ${req.method} ${req.path}`);
