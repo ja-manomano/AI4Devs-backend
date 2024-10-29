@@ -4,6 +4,7 @@ import { Education } from '../../domain/models/Education';
 import { WorkExperience } from '../../domain/models/WorkExperience';
 import { Resume } from '../../domain/models/Resume';
 import { Application } from '../../domain/models/Application';
+import { InterviewStep } from '../../domain/models/InterviewStep';
 
 export const addCandidate = async (candidateData: any) => {
     try {
@@ -65,15 +66,21 @@ export const findCandidateById = async (id: number): Promise<Candidate | null> =
     }
 };
 
-export const updateCandidateStageService = async (candidateId: number, currentInterviewStep: number) => {
+export const updateCandidateStageService = async (candidateId: number, currentInterviewStepName: string) => {
     const application = await Application.findByCandidateId(candidateId);
   
     if (!application) {
-      return null;
+        return null;
     }
-  
-    application.currentInterviewStep = currentInterviewStep;
+
+    const interviewStep = await InterviewStep.findOneBy({ name: currentInterviewStepName });
+
+    if (!interviewStep || interviewStep.id === undefined) {
+        throw new Error('Interview step not found or ID is undefined');
+    }
+
+    application.currentInterviewStep = interviewStep.id;
     await application.save();
   
     return application;
-  };
+};

@@ -44,5 +44,13 @@ export class InterviewStep {
         if (!data) return null;
         return new InterviewStep(data);
     }
+
+    static async findOneBy(params: { name: string }): Promise<InterviewStep | null> {
+        const data = await prisma.interviewStep.findFirst({
+            where: { name: params.name },
+        });
+        if (!data) return null;
+        return new InterviewStep(data);
+    }
 }
 
