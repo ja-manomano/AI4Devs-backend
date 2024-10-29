@@ -61,3 +61,27 @@
 # Prompt 14
 >It seems the PUT endpoint doesn't exist for the application perspective
 
+# Prompt 15
+>@workspace Focus only in the backend folder.
+>
+>When the PUT endpoint candidates/1 receives the string currentInterviewStep, the application fails because it expects to use the value to find the InterviewStep with an integer in the file #file:candidateService.ts
+>
+>Could you fix the code to:
+>
+>first, find the InterviewStep by step name
+>update the currentInterviewStep with the id of the interviewStep in the model #file:Application.ts
+>Explain the steps before giving me the code, I will let you know when I want the code.
+
+# Prompt 16
+>Go ahead!
+
+# Prompt 17
+>I have this error in the #file:candidateService.ts Argument of type '{ where: { name: string; }; }' is not assignable to parameter of type 'number'.ts(2345)
+
+# Prompt 18
+>The method findOneBy doesn't exist, could you add in the #file:InterviewStep.ts ?
+
+# Prompt 19
+>Now I have this error in the #file:candidateService.ts Type 'number | undefined' is not assignable to type 'number'. Type 'undefined' is not assignable to type 'number'.ts(2322)
+
+
